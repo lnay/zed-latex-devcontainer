@@ -1,0 +1,22 @@
+// Task alternative to building on save through texlab
+// (using the settings in .zed/settings.json).
+// This is run by clicking the play button next to `\documentclass`
+// in main.tex.
+[
+  {
+    "label": "docker latexmk",
+    "command": "docker",
+    "args": [
+      "compose",
+      "-f",
+      "$ZED_WORKTREE_ROOT/.container/compose.yaml",
+      "run",
+      "latexmk",
+      "-recorder",
+      "-synctex=1",
+      "$ZED_FILENAME"
+    ],
+    "cwd": "$ZED_DIRNAME",
+    "tags": ["latex-build"]
+  }
+]

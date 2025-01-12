@@ -1,0 +1,55 @@
+{
+  "lsp": {
+    "texlab": {
+      "settings": {
+        "texlab": {
+          "build": {
+            "onSave": true,
+            "forwardSearchAfter": true,
+            // Build the document using docker-compose,
+            // with the compose file in the .container:
+            "executable": "docker",
+            "args": [
+              "compose",
+              "-f",
+              ".container/compose.yaml",
+              "run",
+              "latexmk",
+              "-recorder",
+              "-synctex=1",
+              "%f"
+            ]
+          },
+          // Forward search example with zathura.
+          // Extra attention needs to be paid to the
+          // inverse-search command, as the tex file
+          // path will be the one inside the container
+          // (as it was compiled there), so here we use
+          // sed to translate to the path outside the
+          // container.
+          "forwardSearch": {
+            "executable": "zathura",
+            "args": [
+              "--synctex-forward",
+              "%l:1:%f",
+              "-x",
+              "bash -c 'zed `echo %%{input} | sed -e s./home/dev/work.$PWD.`:%%{line}'",
+              "%p"
+            ]
+          }
+        }
+      }
+    }
+  },
+  // Suggested in your global settings.json:
+  "file_types": {
+    "Perl": ["latexmkrc"]
+  },
+  // Perl navigator (lsp) is essentially useless on
+  // latexmrc, we just want highlighting.
+  "languages": {
+    "Perl": {
+      "enable_language_server": false
+    }
+  }
+}

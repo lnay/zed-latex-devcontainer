@@ -1,0 +1,3 @@
+# Ignore all auxiliary files:
+main.*
+!main.tex
