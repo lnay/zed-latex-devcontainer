@@ -9,6 +9,7 @@ A benefit to this approach is not needing to install a LaTeX distribution direct
 ## Forward+inverse search
 
 This template includes a config to have both forward and inverse search working with `zathura` (requires `sed` and `bash` on path).
+Adjustments are necessary for other PDF viewers.
 The corresponding section of `.zed/settings.json` (the "forwardSearch" item) could be deleted, and the autoconfig could be relied on instead (provided that works already), at the cost of inverse-search not working. Inverse-search needs extra care when compiling the document from inside the container, as the file path that will be attempted to be opened will actually be the path inside the container (not where `zed` is running).
 
 ## `texlab` vs tasks
