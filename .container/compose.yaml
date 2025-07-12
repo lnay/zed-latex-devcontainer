@@ -2,18 +2,20 @@ services:
   shell:
     build:
       context: .
+      target: dev
     volumes:
       - type: bind
         source: ..
         target: /home/dev/work/
-    entrypoint: ["/usr/bin/bash", "-i"]
+    entrypoint: [ "/usr/bin/bash", "-i" ]
     stdin_open: true
     tty: true
   latexmk:
     build:
       context: .
+      target: dev
     volumes:
       - type: bind
         source: ..
         target: /home/dev/work/
-    entrypoint: ["latexmk"]
+    entrypoint: [ "latexmk" ]
